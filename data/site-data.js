@@ -22,19 +22,10 @@ window.SITE_DATA = {
   ],
   "houseTrim": { "left": 15, "right": 16 },
 
-  "updates": [
-    { "date": "2026-10-15", "stage": "ground", "text": "First courses of the ground floor walls are up." },
-    { "date": "2026-09-28", "stage": "foundation", "text": "Foundation slab poured and left to cure." },
-    { "date": "2026-08-01", "stage": "foundation", "text": "Ground broken. Site cleared and set out." }
-  ],
+  "updates": [],
 
   // source is one of: Bank (sent from bank to Dad's M-Pesa), Cash
-  "transfers": [
-    { "id": "t1", "date": "2026-08-02", "amount": 60000, "source": "Bank", "for": "Foundation", "note": "Example entry. Delete me.", "example": true },
-    { "id": "t2", "date": "2026-08-20", "amount": 25000, "source": "Cash", "for": "Labour", "note": "Example entry. Delete me.", "example": true },
-    { "id": "t3", "date": "2026-09-12", "amount": 40000, "source": "Bank", "for": "Materials", "note": "Example entry. Delete me.", "example": true },
-    { "id": "t4", "date": "2026-10-05", "amount": 15000, "source": "Bank", "for": "Transport", "note": "Example entry. Delete me.", "example": true }
-  ],
+  "transfers": [],
   "brickValue": 5000,
   "spendCategories": ["General", "Foundation", "Ground floor", "First floor", "Roof terrace", "Materials", "Labour", "Transport", "Fittings"],
 

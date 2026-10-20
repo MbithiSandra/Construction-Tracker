@@ -348,3 +348,31 @@ table.log tr.example td { color: var(--muted); }
 .room-chip .mini { display: flex; gap: 3px; margin-top: 10px; }
 .room-chip .mini i { flex: 1; height: 8px; border-radius: 3px; }
 .room-chip .bar { margin-top: 10px; height: 5px; }
+
+/* ---------- Family login ---------- */
+.who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.who input { position: absolute; opacity: 0; pointer-events: none; }
+.who span {
+  display: grid; place-items: center; gap: 6px; padding: 16px 8px; border-radius: 16px;
+  border: 1px solid var(--line-strong); background: #fff; cursor: pointer; font-weight: 700;
+}
+.who .face {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--serif); font-size: 20px; background: var(--sand); color: var(--sand-deep);
+}
+.who input:checked + span { border-color: var(--forest); box-shadow: 0 0 0 2px var(--forest); }
+.who input:focus-visible + span { outline: 2px solid var(--forest); outline-offset: 2px; }
+.login-error { color: var(--clay-deep); font-size: 14px; font-weight: 600; min-height: 1.2em; margin: 0; }
+.user-chip {
+  display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--card);
+  border-radius: 999px; padding: 4px 6px 4px 4px; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.user-chip .face {
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--forest); color: var(--forest-ink); font-family: var(--serif); font-size: 14px;
+}
+body.locked main, body.locked .footer, body.locked .nav, body.locked .user-chip { display: none; }
+.lock-screen { max-width: 420px; margin: 80px auto; text-align: center; display: none; }
+body.locked .lock-screen { display: block; }
+.lock-screen .btn { margin-top: 18px; }
+.lock-screen { max-width: 420px; margin: 60px auto; text-align: center; }
