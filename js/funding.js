@@ -5,8 +5,10 @@
    ========================================================= */
 
 (function () {
-  const SOURCES = ["Bank", "Cash", "M-Pesa"];
-  const COLOURS = { Bank: "var(--bank)", Cash: "var(--cash)", "M-Pesa": "var(--mpesa)" };
+  const SOURCES = ["Bank", "Cash"];
+const COLOURS = { Bank: "var(--bank)", Cash: "var(--cash)" };
+// What people see on screen for each source
+const LABELS = { Bank: "Bank to M-Pesa", Cash: "Cash" };
   const $ = (id) => document.getElementById(id);
   let filter = "All";
   let editingId = null;
@@ -27,7 +29,7 @@
     $("splitBar").innerHTML = SOURCES.map((s) => `<span style="flex-grow:${bySrc[s] || 0};background:${COLOURS[s]}"></span>`).join("");
     $("srcRows").innerHTML = SOURCES.map((s) => {
       const share = total ? Math.round((bySrc[s] / total) * 100) : 0;
-      return `<div class="src-row"><span><i class="dot" style="background:${COLOURS[s]};margin-right:8px;box-shadow:0 0 0 2px rgba(243,238,226,.25)"></i>${s} <span class="muted">· ${share}%</span></span><span class="money">${fmt.kes(bySrc[s])}</span></div>`;
+      return `<div class="src-row"><span><i class="dot" style="background:${COLOURS[s]};margin-right:8px;box-shadow:0 0 0 2px rgba(243,238,226,.25)"></i>${LABELS[s]} <span class="muted">· ${share}%</span></span><span class="money">${fmt.kes(bySrc[s])}</span></div>`;
     }).join("");
 
     const byDate = sorted(t);
@@ -113,7 +115,7 @@
     if (!x) return;
     document.querySelectorAll(`.brick[data-id="${x.id}"]`).forEach((n) => n.classList.add("hl"));
     const hidden = document.body.classList.contains("blurred");
-    tip.innerHTML = `<strong>${hidden ? "Amount hidden" : fmt.kes(x.amount)}</strong><br>${esc(x.source)} for ${esc(x.for.toLowerCase())}<br><span style="opacity:.7">${fmt.date(x.date)}</span>`;
+    tip.innerHTML = `<strong>${hidden ? "Amount hidden" : fmt.kes(x.amount)}</strong><br>${esc(LABELS[x.source] || x.source)} for ${esc(x.for.toLowerCase())}<br><span style="opacity:.7">${fmt.date(x.date)}</span>`;
     tip.style.display = "block";
     const px = (e.touches ? e.touches[0].clientX : e.clientX) + 14;
     const py = (e.touches ? e.touches[0].clientY : e.clientY) + 14;
@@ -183,7 +185,7 @@
       ? rows.map((x) => `
         <tr class="${x.example ? "example" : ""}">
           <td style="white-space:nowrap">${fmt.date(x.date)}</td>
-          <td><span class="src ${x.source}">${esc(x.source)}</span></td>
+          <td><span class="src ${x.source}">${esc(LABELS[x.source] || x.source)}</span></td>
           <td>${esc(x.for)}</td>
           <td class="muted">${esc(x.note)}${x.example ? ' <span class="pill" style="background:var(--sand);color:var(--sand-deep)">Example</span>' : ""}</td>
           <td class="amt money">${fmt.kes(x.amount)}</td>

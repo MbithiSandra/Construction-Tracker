@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Funding · Mjengo Tracker</title>
-  <meta name="description" content="Every amount sent home for the building, by bank, cash or M-Pesa.">
+  <meta name="description" content="Every amount sent home for the building, by bank to M-Pesa or cash.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2324412F'/%3E%3Cpath d='M8 23V14l8-6 8 6v9h-5v-5h-6v5z' fill='%23F3EEE2'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,9 +107,8 @@
           <span class="muted" style="font-size:13px" id="brickKey"></span>
         </div>
         <div class="legend" style="margin-bottom:10px">
-          <span><i class="dot" style="background:var(--bank)"></i>Bank</span>
-          <span><i class="dot" style="background:var(--cash)"></i>Cash</span>
-          <span><i class="dot" style="background:var(--mpesa)"></i>M-Pesa</span>
+         <span><i class="dot" style="background:var(--bank)"></i>Bank to M-Pesa</span>
+        <span><i class="dot" style="background:var(--cash)"></i>Cash</span>
         </div>
         <div class="wall-wrap">
           <div class="wall" id="wall"></div>
@@ -127,9 +126,8 @@
         </div>
         <div id="monthChart"></div>
         <div class="legend" style="margin-top:12px">
-          <span><i class="dot" style="background:var(--bank)"></i>Bank</span>
+         <span><i class="dot" style="background:var(--bank)"></i>Bank to M-Pesa</span>
           <span><i class="dot" style="background:var(--cash)"></i>Cash</span>
-          <span><i class="dot" style="background:var(--mpesa)"></i>M-Pesa</span>
         </div>
       </div>
     </section>
@@ -143,9 +141,8 @@
           </div>
           <div class="toolbar" id="filters" role="group" aria-label="Filter by how it was sent">
             <button class="chip" data-f="All" aria-pressed="true">All</button>
-            <button class="chip" data-f="Bank" aria-pressed="false">Bank</button>
+            <button class="chip" data-f="Bank" aria-pressed="false">Bank to M-Pesa</button>
             <button class="chip" data-f="Cash" aria-pressed="false">Cash</button>
-            <button class="chip" data-f="M-Pesa" aria-pressed="false">M-Pesa</button>
           </div>
         </div>
         <div class="table-wrap">
@@ -184,9 +181,8 @@
           <div class="field full">
             How was it sent
             <div class="seg">
-              <label><input type="radio" name="source" value="Bank" checked><span>Bank</span></label>
+              <label><input type="radio" name="source" value="Bank" checked><span>Bank to M-Pesa</span></label>
               <label><input type="radio" name="source" value="Cash"><span>Cash</span></label>
-              <label><input type="radio" name="source" value="M-Pesa"><span>M-Pesa</span></label>
             </div>
           </div>
           <label class="field full">What it is for <select class="input" name="for" id="forSelect"></select></label>

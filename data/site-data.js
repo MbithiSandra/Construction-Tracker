@@ -4,11 +4,11 @@
 
 window.SITE_DATA = {
   "project": {
-    "name": "Mjengo wa Nyumbani",
+    "name": "The House Construction",
     "tagline": "Our family home, rising one course of blocks at a time.",
-    "location": "Upcountry",
+    "location": "Ngoni",
     "builder": "Grandscale Builders Ltd",
-    "startDate": "2026-08-01"
+    "startDate": "2026-10-01"
   },
 
   // Each stage is one slice of the house picture.
@@ -28,12 +28,12 @@ window.SITE_DATA = {
     { "date": "2026-08-01", "stage": "foundation", "text": "Ground broken. Site cleared and set out." }
   ],
 
-  // source is one of: Bank, Cash, M-Pesa
+  // source is one of: Bank (sent from bank to Dad's M-Pesa), Cash
   "transfers": [
     { "id": "t1", "date": "2026-08-02", "amount": 60000, "source": "Bank", "for": "Foundation", "note": "Example entry. Delete me.", "example": true },
     { "id": "t2", "date": "2026-08-20", "amount": 25000, "source": "Cash", "for": "Labour", "note": "Example entry. Delete me.", "example": true },
     { "id": "t3", "date": "2026-09-12", "amount": 40000, "source": "Bank", "for": "Materials", "note": "Example entry. Delete me.", "example": true },
-    { "id": "t4", "date": "2026-10-05", "amount": 15000, "source": "M-Pesa", "for": "Transport", "note": "Example entry. Delete me.", "example": true }
+    { "id": "t4", "date": "2026-10-05", "amount": 15000, "source": "Bank", "for": "Transport", "note": "Example entry. Delete me.", "example": true }
   ],
   "brickValue": 5000,
   "spendCategories": ["General", "Foundation", "Ground floor", "First floor", "Roof terrace", "Materials", "Labour", "Transport", "Fittings"],

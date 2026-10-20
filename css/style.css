@@ -242,7 +242,7 @@ input[type="range"] { width: 100%; accent-color: var(--forest); }
 .brick:hover, .brick.hl { outline: 2px solid var(--ink); outline-offset: 1px; }
 .brick.Bank { background: var(--bank); }
 .brick.Cash { background: var(--cash); }
-.brick.M-Pesa { background: var(--mpesa); }
+
 @keyframes lay { to { opacity: 1; transform: none; } }
 .wall-ground { height: 10px; border-radius: 6px; background: var(--line-strong); margin-top: 4px; }
 .wall-tip {
@@ -285,7 +285,7 @@ table.log tr.example td { color: var(--muted); }
 .src { white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; }
 .src.Bank { background: var(--mist); color: var(--mist-deep); }
 .src.Cash { background: var(--sand); color: var(--sand-deep); }
-.src.M-Pesa { background: var(--sage); color: var(--sage-deep); }
+
 
 .notice { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .blurred .money { filter: blur(7px); }
