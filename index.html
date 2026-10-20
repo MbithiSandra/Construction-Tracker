@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mjengo Tracker</title>
+  <meta name="description" content="Following the building of our family home upcountry, floor by floor.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2324412F'/%3E%3Cpath d='M8 23V14l8-6 8 6v9h-5v-5h-6v5z' fill='%23F3EEE2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21V10l9-7 9 7v11h-6v-6H9v6z"/></svg>
+        </span>
+        <span class="brand-name">Mjengo</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html" aria-current="page">House</a>
+        <a href="funding.html">Funding</a>
+        <a href="interior.html">Interior</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow" id="eyebrow">Building diary</span>
+        <h1 id="projectName">Mjengo wa Nyumbani</h1>
+        <p class="lead" id="tagline"></p>
+
+        <div class="anchor">
+          <span class="eyebrow">Where we are now</span>
+          <div style="display:flex;align-items:baseline;gap:12px;margin:10px 0 6px">
+            <span class="big-num" id="overallPct">0%</span>
+            <span class="muted">of the house built</span>
+          </div>
+          <div class="bar"><span id="overallBar" style="width:0"></span></div>
+          <p style="margin:16px 0 0;font-size:15px" id="nowText"></p>
+          <p class="muted" style="margin:4px 0 0;font-size:13px" id="lastUpdate"></p>
+          <div style="margin-top:18px">
+            <button class="btn" id="openEdit" style="background:var(--forest-ink);color:var(--forest);border-color:var(--forest-ink)">Update progress</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal" id="reveal" aria-label="Picture of the finished house. Floors that are built show in full colour.">
+          <span class="preview-badge" id="previewBadge">Preview</span>
+        </div>
+        <div class="card" style="margin-top:14px;padding:16px 18px">
+          <div class="time-machine">
+            <span class="eyebrow">Peek ahead</span>
+            <input type="range" id="timeMachine" min="0" max="100" step="0.5" aria-label="Drag to preview the house at a different stage">
+            <button class="btn small" id="backToToday" disabled>Back to today</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Floor by floor</span>
+          <h2>The stages</h2>
+        </div>
+      </div>
+      <div class="grid g4" id="stageTiles"></div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-head" style="margin-bottom:6px">
+          <div>
+            <span class="eyebrow">From the site</span>
+            <h2>Site diary</h2>
+          </div>
+          <button class="btn small" id="openDiary">Add an entry</button>
+        </div>
+        <ul class="diary" id="diary"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>House design by <span id="builder">Grandscale Builders Ltd</span>. Site by Sandra Mbithi, <span id="year"></span>.</span>
+      <a href="https://github.com/MbithiSandra">GitHub</a>
+    </div>
+  </footer>
+
+  <!-- Update progress dialog -->
+  <dialog id="editDialog">
+    <form method="dialog" id="editForm">
+      <div class="dialog-head">
+        <h3>Update progress</h3>
+        <button class="icon-btn" value="cancel" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="dialog-body" id="editBody"></div>
+      <div class="dialog-foot">
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn primary" value="save" id="saveProgress">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Diary entry dialog -->
+  <dialog id="diaryDialog">
+    <form method="dialog" id="diaryForm">
+      <div class="dialog-head">
+        <h3>New diary entry</h3>
+        <button class="icon-btn" value="cancel" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="form-grid">
+          <label class="field">Date <input class="input" type="date" name="date" required></label>
+          <label class="field">Stage <select class="input" name="stage" id="diaryStage"></select></label>
+          <label class="field full">What happened <textarea class="input" name="text" required placeholder="For example, the ring beam on the ground floor was cast today"></textarea></label>
+        </div>
+      </div>
+      <div class="dialog-foot">
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="save">Add entry</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data/site-data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
