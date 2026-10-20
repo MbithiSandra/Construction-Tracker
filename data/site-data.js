@@ -37,7 +37,7 @@ window.SITE_DATA = {
       "rooms": [
         {
           "id": "lounge", "name": "Lounge", "size": "4.55 × 5.00 m", "rects": [[0, 0, 4.75, 5.205]],
-          "status": "planning", "mood": "Warm and easy, made for long Sunday afternoons with family.",
+          "status": "planning", "mood": "Warm and easy, made for long afternoons with family.",
           "palette": ["#B5694B", "#EFE6D6", "#6F7A4E", "#5A3E2B"],
           "items": [
             { "name": "L shaped sofa", "cost": 85000, "done": false },
@@ -50,7 +50,7 @@ window.SITE_DATA = {
         },
         {
           "id": "kitchen", "name": "Kitchen", "size": "4.55 × 2.82 m", "rects": [[0, 5.205, 4.75, 8.205]],
-          "status": "idea", "mood": "Clean, bright and practical, with space for big pots on Christmas day.",
+          "status": "idea", "mood": "Clean, bright and practical",
           "palette": ["#9AAB8E", "#F4F1EA", "#C9A46A", "#3E4A3D"],
           "items": [
             { "name": "Granite worktop", "cost": 60000, "done": false },
@@ -63,7 +63,7 @@ window.SITE_DATA = {
         },
         {
           "id": "pantry", "name": "Pantry", "size": "1.30 × 2.90 m", "rects": [[4.75, 6.905, 6.05, 9.8]],
-          "status": "idea", "mood": "Everything in its place, from gunias of maize to spare gas.",
+          "status": "idea", "mood": "Everything in its place, from foodstuff to utensils",
           "palette": ["#D8C3A0", "#F4EDE0", "#8A6F4E"],
           "items": [
             { "name": "Floor to ceiling shelving", "cost": 14000, "done": false },
@@ -83,7 +83,7 @@ window.SITE_DATA = {
         },
         {
           "id": "guest", "name": "Guest room", "size": "3.55 × 4.40 m", "rects": [[6.05, 5.205, 9.8, 9.8]],
-          "status": "idea", "mood": "Calm and welcoming, so visitors from town want to stay an extra night.",
+          "status": "idea", "mood": "Calm and welcoming, for visitors who want to stay an extra night.",
           "palette": ["#C7D1D3", "#F2EEE6", "#8C7B6B", "#4F6470"],
           "items": [
             { "name": "5 by 6 bed and mattress", "cost": 45000, "done": false },
@@ -104,7 +104,7 @@ window.SITE_DATA = {
         },
         {
           "id": "gstairs", "name": "Staircase", "size": "3.75 × 2.21 m", "rects": [[6.05, 1.5, 9.8, 3.71]],
-          "status": "idea", "mood": "A family photo wall, from shags to graduation day.",
+          "status": "idea", "mood": "A cool mirror staircase",
           "palette": ["#5A3E2B", "#EFE6D6", "#24412F"],
           "items": [
             { "name": "Handrail", "cost": 25000, "done": false },
@@ -124,7 +124,7 @@ window.SITE_DATA = {
         },
         {
           "id": "patio", "name": "Patio", "size": "4.75 × 1.60 m", "rects": [[0.3, 8.205, 4.75, 9.8]],
-          "status": "idea", "mood": "Nyama choma corner for when the cousins come home.",
+          "status": "idea", "mood": "Nyama choma corner ",
           "palette": ["#A8624A", "#E8D9BE", "#55603F"],
           "items": [
             { "name": "Outdoor dining set", "cost": 25000, "done": false },
@@ -139,7 +139,7 @@ window.SITE_DATA = {
       "rooms": [
         {
           "id": "master", "name": "Master bedroom", "size": "4.55 × 3.51 m", "rects": [[0, 0, 4.75, 3.71]],
-          "status": "idea", "mood": "A quiet retreat for Mum and Dad. Deep colours and soft light.",
+          "status": "idea", "mood": "A quiet retreat",
           "palette": ["#24412F", "#EFE6D6", "#B08D57", "#4A3428"],
           "items": [
             { "name": "6 by 6 bed and mattress", "cost": 70000, "done": false },
@@ -178,7 +178,7 @@ window.SITE_DATA = {
         },
         {
           "id": "passage", "name": "Passage", "size": "1.10 m wide", "rects": [[4.75, 1.5, 6.05, 6.905]],
-          "status": "idea", "mood": "Let it breathe. One good runner and one piece of art.",
+          "status": "idea", "mood": "Let it breathe",
           "palette": ["#D9CBB3", "#5A3E2B"],
           "items": [
             { "name": "Runner rug", "cost": 5000, "done": false },
