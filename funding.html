@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Funding · Mjengo Tracker</title>
+  <meta name="description" content="Every amount sent home for the building, by bank, cash or M-Pesa.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2324412F'/%3E%3Cpath d='M8 23V14l8-6 8 6v9h-5v-5h-6v5z' fill='%23F3EEE2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fund-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+    .fund-top .stack { display: grid; gap: 16px; }
+    @media (max-width: 900px) { .fund-top { grid-template-columns: 1fr 1fr; } .fund-top .anchor { grid-column: 1 / -1; } }
+    @media (max-width: 480px) { .fund-top { grid-template-columns: 1fr; } }
+    .src-rows { display: grid; gap: 10px; margin-top: 18px; }
+    .src-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .src-row .money { font-variant-numeric: tabular-nums; font-weight: 700; }
+    .anchor .split-bar { background: rgba(243, 238, 226, .15); margin-top: 22px; }
+    .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 21V10l9-7 9 7v11h-6v-6H9v6z"/></svg>
+        </span>
+        <span class="brand-name">Mjengo</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">House</a>
+        <a href="funding.html" aria-current="page">Funding</a>
+        <a href="interior.html">Interior</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="fundMain">
+    <section class="section" style="margin-top:10px">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Money sent home</span>
+          <h1>Funding</h1>
+        </div>
+        <div class="toolbar">
+          <button class="btn ghost" id="toggleHide" aria-pressed="false">Hide amounts</button>
+          <button class="btn" id="exportCsv">Export CSV</button>
+          <button class="btn primary" id="openAdd">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+            Add a transfer
+          </button>
+        </div>
+      </div>
+
+      <div class="tile sand notice" id="exampleNotice" style="margin-bottom:16px;display:none">
+        <span>The entries marked as examples are only there to show how the page looks. Clear them before you add your real transfers.</span>
+        <button class="btn small" id="clearExamples">Clear examples</button>
+      </div>
+
+      <div class="fund-top">
+        <div class="anchor">
+          <span class="eyebrow">Total sent so far</span>
+          <div class="big-num money" id="totalSent" style="margin-top:10px">KES 0</div>
+          <p class="muted" style="margin:8px 0 0;font-size:14px" id="totalSub"></p>
+          <div class="split-bar" id="splitBar"></div>
+          <div class="src-rows" id="srcRows"></div>
+        </div>
+        <div class="stack">
+          <div class="tile sage">
+            <span class="eyebrow">Last sent</span>
+            <div class="mid-num money" id="lastAmt" style="margin-top:8px">None yet</div>
+            <p class="muted" style="margin:4px 0 0;font-size:13px" id="lastSub"></p>
+          </div>
+          <div class="tile mist">
+            <span class="eyebrow">This month</span>
+            <div class="mid-num money" id="monthAmt" style="margin-top:8px">KES 0</div>
+            <p class="muted" style="margin:4px 0 0;font-size:13px" id="monthSub"></p>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="tile clay">
+            <span class="eyebrow">Biggest single transfer</span>
+            <div class="mid-num money" id="bigAmt" style="margin-top:8px">None yet</div>
+            <p class="muted" style="margin:4px 0 0;font-size:13px" id="bigSub"></p>
+          </div>
+          <div class="tile sand">
+            <span class="eyebrow">Average per month</span>
+            <div class="mid-num money" id="avgAmt" style="margin-top:8px">KES 0</div>
+            <p class="muted" style="margin:4px 0 0;font-size:13px" id="avgSub"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <div class="card">
+        <div class="section-head" style="margin-bottom:6px">
+          <div>
+            <span class="eyebrow">Every shilling is a brick</span>
+            <h2>The money wall</h2>
+          </div>
+          <span class="muted" style="font-size:13px" id="brickKey"></span>
+        </div>
+        <div class="legend" style="margin-bottom:10px">
+          <span><i class="dot" style="background:var(--bank)"></i>Bank</span>
+          <span><i class="dot" style="background:var(--cash)"></i>Cash</span>
+          <span><i class="dot" style="background:var(--mpesa)"></i>M-Pesa</span>
+        </div>
+        <div class="wall-wrap">
+          <div class="wall" id="wall"></div>
+          <div class="wall-ground"></div>
+        </div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">Hover or tap a brick to see which transfer laid it.</p>
+      </div>
+
+      <div class="card chart">
+        <div class="section-head" style="margin-bottom:10px">
+          <div>
+            <span class="eyebrow">Month by month</span>
+            <h2>When money went</h2>
+          </div>
+        </div>
+        <div id="monthChart"></div>
+        <div class="legend" style="margin-top:12px">
+          <span><i class="dot" style="background:var(--bank)"></i>Bank</span>
+          <span><i class="dot" style="background:var(--cash)"></i>Cash</span>
+          <span><i class="dot" style="background:var(--mpesa)"></i>M-Pesa</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">The full record</span>
+            <h2>Every transfer</h2>
+          </div>
+          <div class="toolbar" id="filters" role="group" aria-label="Filter by how it was sent">
+            <button class="chip" data-f="All" aria-pressed="true">All</button>
+            <button class="chip" data-f="Bank" aria-pressed="false">Bank</button>
+            <button class="chip" data-f="Cash" aria-pressed="false">Cash</button>
+            <button class="chip" data-f="M-Pesa" aria-pressed="false">M-Pesa</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="log">
+            <thead>
+              <tr><th>Date</th><th>Sent by</th><th>For</th><th>Note</th><th class="amt">Amount</th><th><span class="sr-only" style="position:absolute;left:-9999px">Actions</span></th></tr>
+            </thead>
+            <tbody id="logBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>Site by Sandra Mbithi, <span id="year"></span>.</span>
+      <a href="https://github.com/MbithiSandra">GitHub</a>
+    </div>
+  </footer>
+
+  <div class="wall-tip" id="wallTip"></div>
+
+  <dialog id="addDialog">
+    <form method="dialog" id="addForm">
+      <div class="dialog-head">
+        <h3 id="addTitle">Add a transfer</h3>
+        <button class="icon-btn" value="cancel" formnovalidate aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="form-grid">
+          <label class="field">Date sent <input class="input" type="date" name="date" required></label>
+          <label class="field">Amount in KES <input class="input" type="number" name="amount" min="1" step="1" inputmode="numeric" required placeholder="25000"></label>
+          <div class="field full">
+            How was it sent
+            <div class="seg">
+              <label><input type="radio" name="source" value="Bank" checked><span>Bank</span></label>
+              <label><input type="radio" name="source" value="Cash"><span>Cash</span></label>
+              <label><input type="radio" name="source" value="M-Pesa"><span>M-Pesa</span></label>
+            </div>
+          </div>
+          <label class="field full">What it is for <select class="input" name="for" id="forSelect"></select></label>
+          <label class="field full">Note (optional) <input class="input" name="note" placeholder="For example, 40 bags of cement"></label>
+        </div>
+      </div>
+      <div class="dialog-foot">
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" value="save">Save transfer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data/site-data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/funding.js"></script>
+</body>
+</html>
